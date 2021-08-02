@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<<<<<<< HEAD
     <title>Fire Notes</title>
 
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
@@ -12,43 +11,61 @@
     <style type="text/css">
       html,
       body {
-          font-family: 'Open Sans';
+          font-family: 'Comic Sans MS';
+          background-color: lightpink;
+          
       }
-
+      #title {
+        padding-top: 20px;
+      }
+      #sub {
+          padding-top: 32px;
+      }
+      #words {
+            
+            font-size: 36px;
+            border-radius: 25px;
+            border: 2px solid black;
+            box-shadow: 5px 10px;
+            background-image: url("https://d1csarkz8obe9u.cloudfront.net/posterpreviews/yellow-notebook-paper-background-design-template-d7dfa26f8c8c759652e2521f0ecd24eb_screen.jpg?ts=1567891546")
+  
+      }
+      #button {
+          background-color: lightpink;
+           border: 2px solid black;
+      }
       img {
           padding: 5px;
           border: 1px solid #ccc;
       }
     </style>
-=======
-    <title>Welcome to Firebase Hosting</title>
-
->>>>>>> f934dab4d8518f6081737f7b10d29d136ba47a92
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/8.8.1/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/8.8.1/firebase-auth.js"></script>
     <script defer src="/__/firebase/8.8.1/firebase-database.js"></script>
-<<<<<<< HEAD
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
     <script src="js/signIn.js"></script>
   </head>
   <body>
 
-    <section class="hero is-fullheight is-default is-bold">
-        <div class="hero-body">
+    <section class="hero is-fullheight is-default is-bold" >
+        <div class="hero-body" >
             <div class="container has-text-centered">
-                <div class="columns is-vcentered">
-                    <div class="column is-6 is-offset-3">
-                        <h1 class="title is-2">
+                <div class="columns is-vcentered" >
+                    <div class="column is-6 is-offset-3" id = "words">
+                        <h1 class="title is-2" id="title">
                             Welcome to Your Shopping List!
                         </h1>
-                        <h2 class="subtitle is-4">
+                       
+                        <h1></h1>
+                        
+                        <h2 class="subtitle is-4" id="sub">
                             Log in to view your List or create a new one. 
                         </h2>
                         <br>
-                        <p class="has-text-centered">
-                            <a class="button is-medium is-info is-outlined" onclick="signIn()">
+                        <p class="has-text-centered" >
+                            <a class="button is-medium  is-outlined" id="button" onclick="signIn()">
                                 Sign In
                             </a>
                         </p>
@@ -60,82 +77,3 @@
     
   </body>
 </html>
-=======
-    <script defer src="/__/firebase/8.8.1/firebase-firestore.js"></script>
-    <script defer src="/__/firebase/8.8.1/firebase-functions.js"></script>
-    <script defer src="/__/firebase/8.8.1/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/8.8.1/firebase-storage.js"></script>
-    <script defer src="/__/firebase/8.8.1/firebase-analytics.js"></script>
-    <script defer src="/__/firebase/8.8.1/firebase-remote-config.js"></script>
-    <script defer src="/__/firebase/8.8.1/firebase-performance.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
-  </body>
-</html>
->>>>>>> f934dab4d8518f6081737f7b10d29d136ba47a92
