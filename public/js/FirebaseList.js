@@ -24,7 +24,8 @@ const getItems = (userId) => {
 function updateList(){
   // 1. Capture the form data
   const ingredient = document.querySelector('#searchVal');
-  const quantity = checkQuant(ingredient);
+  let quantity = 1;
+  quantity = checkQuant(ingredient);
   // 2. Format the data and write it to our database
   firebase.database().ref(`users/${googleUser.uid}`).push({
     name: ingredient.value,
@@ -36,12 +37,12 @@ function updateList(){
   });
 }
 
-function checkQuant(name){
+function checkQuant(item){
     let quantity = 0;
     const data = getItems(googleUser);
     for(item in data){
-        if(item==name){
-            quantity++;
+        if(item==item.name){
+            quantity += item.quantity;
             deleteNote(item);            
         }
     }
