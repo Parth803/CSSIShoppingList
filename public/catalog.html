@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Recipes</title>
+    <link href="catalog.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script defer src="/__/firebase/8.8.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.8.1/firebase-database.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-menu is-active">
+        <a class="navbar-item" href="home.html">
+          Home
+        </a>
+        <a class="navbar-item" href="index.html">
+          Login
+        </a>
+      </div>
+    </nav>
+
+    <section class="hero is-default is-bold is-fullheight" >
+        <div class="hero-body" >
+            <div class="container has-text-centered">
+                <div class="columns is-vcentered" >
+                    <div class="column is-6 is-offset-3" id = "words">
+                        <h1 class="title is-2" id="title">
+                            Welcome to the Recipe Catalog!
+                        </h1>
+                       
+                        <h1></h1>
+                        
+                        <h2 class="subtitle is-4" id="sub">
+                            Find some delicious recipes below!
+                        </h2>
+                        <br>
+                        <input id="search" class="input is-small"> <button id="but" class = "button is-link is-small" onclick="getrecipe(document.getElementById('search').value)">Search</button>
+                        <div id="output">
+                            <h1>asdjfaisdjflkasdf</h1>
+                            <img src="https://www.w3schools.com/images/w3lynx_200.png">
+                        </div>
+                        <a href="" id="sourceLink">asdasd</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    
+    
+    
+    <script>
+    function getsource(id){
+        $.ajax({
+            url:"https://api.spoonacular.com/recipes/"+id+"/information?apiKey=1d737f1d70534d378bdcbc673648ef6e",
+            success: function(res){
+                document.getElementById("sourceLink").innerHTML=res.sourceUrl
+                document.getElementById("sourceLink").href=res.sourceUrl
+            }
+        });
+    }
+    function getrecipe(q){
+        $.ajax({
+            url:"https://api.spoonacular.com/recipes/search?apiKey=1d737f1d70534d378bdcbc673648ef6e&number=3&query="+q,
+            success:function(res){
+            document.getElementById("output").innerHTML=""
+            for(var i=0; i<res.results.length;i++){
+            document.getElementById("output").innerHTML+="<h1>"+res.results[i].title+"</h1><br><img src='"+res.baseUri+res.results[i].image+"'width='400'></img><br> Ready in "+res.results[i].readyInMinutes+" Minutes"
+            getsource(res.results[i].id)
+            }
+        }
+        })
+    }
+    </script>
+
+  </body>
+
+</html>
