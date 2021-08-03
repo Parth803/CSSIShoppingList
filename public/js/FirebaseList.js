@@ -40,10 +40,10 @@ function updateList(){
 function checkQuant(item){
     let quantity = 0;
     const data = getItems(googleUser);
-    for(item in data){
-        if(item==item.name){
-            quantity += item.quantity;
-            deleteNote(item);            
+    for(entry in data){
+        if(item.value==entry.name){
+            quantity += entry.quantity;
+            deleteNote(entry);            
         }
     }
     return quantity;
