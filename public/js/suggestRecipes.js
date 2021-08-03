@@ -2,9 +2,25 @@ console.log("Script running");
 
 const unirest = require('unirest');
 
+let googleUser;
+
+firebase.auth().onAuthStateChanged(function(user) {
+    googleUser = user;
+}
+
+let ingArr [];
+  
+const notesRef = firebase.database().ref(`users/${userId}`);
+notesRef.on('value', (snapshot) => {
+    ingArr.push(snapshot.val());
+});
+
+
+
+
 const API_KEY = "1d737f1d70534d378bdcbc673648ef6e";
 let apiRequestURL = "?apiKey=" + API_KEY
-const INGREDIENT_LIST = ['bananas', 'apples', 'cheese', 'crackers']; //replace ingredients list with input
+const INGREDIENT_LIST = ingArr; //replace ingredients list with input
 let baseString = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/"; //base string for all request URLs
 
 //
@@ -30,4 +46,4 @@ unirest.get(recipeFinderString)
    };
 }); 
 
-javascript fetch(recipeFinderString) .then(response => response.json()) .then(myjson => { console.log(myjson); });
+javascript .fetch(recipeFinderString) .then(response => response.json()) .then(myjson => { console.log(myjson); });
