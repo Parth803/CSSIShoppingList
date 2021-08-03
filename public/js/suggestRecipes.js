@@ -8,7 +8,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     googleUser = user;
 }
 
-let ingArr [];
+let ingArr = [];
   
 const notesRef = firebase.database().ref(`users/${userId}`);
 notesRef.on('value', (snapshot) => {
