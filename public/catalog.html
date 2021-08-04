@@ -19,12 +19,12 @@
   </head>
 
   <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-black" role="navigation" aria-label="main navigation">
       <div class="navbar-menu is-active">
-        <a class="navbar-item" href="home.html">
+        <a class="navbar-item has-text-info" href="home.html">
           Home
         </a>
-        <a class="navbar-item" href="index.html">
+        <a class="navbar-item has-text-info" href="index.html">
           Login
         </a>
         <a class="navbar-item" href="catalog.html">
@@ -49,15 +49,17 @@
                         </h2>
                         <br>
                         <input id="search" class="input is-small"> <button id="but" class = "button is-link is-small" onclick="getrecipe(document.getElementById('search').value)">Search</button>
-                        <div id="output">
-                            <h1>asdjfaisdjflkasdf</h1>
-                            <img src="https://www.w3schools.com/images/w3lynx_200.png">
+                        <div>
+                            <h2 id="output">
+                            
+                            </h2>
                         </div>
-                        <a href="" id="sourceLink">asdasd</a>
+                        <a class="subtitle is-5 has-text-link" href="" id="sourceLink"></a>
                     </div>
                 </div>
             </div>
         </div>
+        
     </section>
 
 
@@ -69,20 +71,22 @@
     <script>
     function getsource(id){
         $.ajax({
-            url:"https://api.spoonacular.com/recipes/"+id+"/information?apiKey=1d737f1d70534d378bdcbc673648ef6e",
+            url:"https://api.spoonacular.com/recipes/"+id+"/information?apiKey=da9eebbb65da478894ce3e45a23e7aa4",
             success: function(res){
-                document.getElementById("sourceLink").innerHTML=res.sourceUrl
+                
+                document.getElementById("sourceLink").innerHTML+=res.sourceUrl + "<br> "
                 document.getElementById("sourceLink").href=res.sourceUrl
             }
         });
     }
     function getrecipe(q){
         $.ajax({
-            url:"https://api.spoonacular.com/recipes/search?apiKey=1d737f1d70534d378bdcbc673648ef6e&number=3&query="+q,
+            url:"https://api.spoonacular.com/recipes/search?apiKey=da9eebbb65da478894ce3e45a23e7aa4&number=3&query="+q,
             success:function(res){
             document.getElementById("output").innerHTML=""
+            document.getElementById("sourceLink").innerHTML= ""
             for(var i=0; i<res.results.length;i++){
-            document.getElementById("output").innerHTML+="<h1>"+res.results[i].title+"</h1><br><img src='"+res.baseUri+res.results[i].image+"'width='400'></img><br> Ready in "+res.results[i].readyInMinutes+" Minutes"
+            document.getElementById("output").innerHTML+="<h1>"+res.results[i].title+"</h1><br><img src='"+res.baseUri+res.results[i].image+"'width='400'></img><br> Ready in "+res.results[i].readyInMinutes+" Minutes <hr>"
             getsource(res.results[i].id)
             }
         }
