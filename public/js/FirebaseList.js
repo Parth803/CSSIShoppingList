@@ -21,9 +21,9 @@ const getItems = (userId) => {
   return dataArr;
 };
 
-function updateList(){
+function updateList(item){
   // 1. Capture the form data
-  const ingredient = document.querySelector('#searchVal');
+  const ingredient = item;
   let quantity = 1;
   quantity = checkQuant(ingredient);
   // 2. Format the data and write it to our database

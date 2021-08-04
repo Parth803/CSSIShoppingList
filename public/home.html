@@ -15,6 +15,7 @@
     <script defer src="/__/firebase/8.8.1/firebase-database.js"></script>
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
     <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script  src="FirebaseList.js"></script>
   </head>
 
   <body>
@@ -25,6 +26,9 @@
         </a>
         <a class="navbar-item" href="index.html">
           Login
+        </a>
+        <a class="navbar-item" href="catalog.html">
+          Recipes
         </a>
       </div>
     </nav>
@@ -41,14 +45,29 @@
                         <h1></h1>
                         
                         <br>
-                        <input id="search" class="input is-small"> <button id="but" class = "button is-link is-small" onclick="getrecipe(document.getElementById('search').value)">Search</button>
+                        <input id="search" class="input is-small"> <button id="but" class = "button is-link is-small" onclick="getIngredient(document.getElementById('search').value)">Search</button>
                         <div id="output">
-                            <h1>asdjfaisdjflkasdf</h1>
-                            <img src="https://www.w3schools.com/images/w3lynx_200.png">
+                            
                         </div>
-                        <a href="" id="sourceLink">asdasd</a>
+                        <a href="" id="sourceLink"></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+    function getIngredient(q){
+        $.ajax({
+            url:"https://api.spoonacular.com/food/ingredients/search?apiKey=da9eebbb65da478894ce3e45a23e7aa4&number=1&query="+q,
+            success:function(res){
+            document.getElementById("output").innerHTML=""
+            document.getElementById("output").innerHTML+="<h1>"+res.results[0].name+"</h1><br><img src='"+'https://spoonacular.com/cdn/ingredients_500x500/'+res.results[0].image+"'width='500'></img><button id='addList' class = 'button is-link is-small' onclick = '"+updateList(q)+"'>Add to List</button>"
+            }
+        })
+    }
+    </script>
+
+    </body>
+
+</html>
