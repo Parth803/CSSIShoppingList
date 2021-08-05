@@ -78,6 +78,7 @@
                 
                 document.getElementById("sourceLink").innerHTML+=res.sourceUrl + "<br> "
                 document.getElementById("sourceLink").href=res.sourceUrl
+                
             }
         });
     }
@@ -87,10 +88,17 @@
             success:function(res){
             document.getElementById("output").innerHTML=""
             document.getElementById("sourceLink").innerHTML= ""
+            
             for(var i=0; i<res.results.length;i++){
             document.getElementById("output").innerHTML+="<h1>"+res.results[i].title+"</h1><br><img src='"+res.baseUri+res.results[i].image+"'width='400'></img><br> Ready in "+res.results[i].readyInMinutes+" Minutes <hr>"
             getsource(res.results[i].id)
+            
+            
             }
+            if (document.getElementById("output").innerHTML=="") {
+                    alert("Oops! We couldn't find any results that matched that search.");
+            }
+            
         }
         })
     }

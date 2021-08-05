@@ -18,7 +18,7 @@ notesRef.on('value', (snapshot) => {
 
 
 
-const API_KEY = "1d737f1d70534d378bdcbc673648ef6e";
+const API_KEY = "da9eebbb65da478894ce3e45a23e7aa4";
 let apiRequestURL = "?apiKey=" + API_KEY
 const INGREDIENT_LIST = ingArr; //replace ingredients list with input
 let baseString = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/"; //base string for all request URLs
