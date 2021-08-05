@@ -12,10 +12,11 @@
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script defer src="/__/firebase/8.8.1/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.8.1/firebase-auth.js"></script>
     <script defer src="/__/firebase/8.8.1/firebase-database.js"></script>
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
     <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script  src="FirebaseList.js"></script>
+    <script  src="js/FirebaseList.js"></script>
   </head>
 
   <body>
@@ -43,10 +44,13 @@
                         <h1></h1>
                         
                         <br>
-                        <input id="search" class="input is-small"> <button id="but" class = "button is-link is-small" onclick="getIngredient(document.getElementById('search').value)">Add Ingredient</button>
+                        
+                        <input id="search" class="input is-small"> <button id="but" class = "button is-link is-small" onclick="getIngredient(document.getElementById('search').value)">Search Ingredient</button>
                         <div id="output">
                             
                         </div>
+
+                        
                         <a href="" id="sourceLink"></a>
                     </div>
                 </div>
@@ -60,7 +64,7 @@
             url:"https://api.spoonacular.com/food/ingredients/search?apiKey=da9eebbb65da478894ce3e45a23e7aa4&number=1&query="+q,
             success:function(res){
             document.getElementById("output").innerHTML=""
-            document.getElementById("output").innerHTML+="<h1>"+res.results[0].name+"</h1><br><img src='"+'https://spoonacular.com/cdn/ingredients_500x500/'+res.results[0].image+"'width='500'></img><button id='addList' class = 'button is-link is-small' onclick = '"+updateList(q)+"'>Add to List</button>"
+            document.getElementById("output").innerHTML+="<h1>"+res.results[0].name+"</h1><br><img src='"+'https://spoonacular.com/cdn/ingredients_500x500/'+res.results[0].image+"'width='500'></img><br><button id='addList' class = 'button is-link is-small' onclick = 'updateList(`"+res.results[0].name+"`)'>Add to List</button>"
             }
         })
     }
