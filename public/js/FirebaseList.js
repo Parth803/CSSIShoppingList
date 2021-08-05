@@ -53,3 +53,13 @@ function deleteNote(noteId) {
     firebase.database().ref(`users/${googleUserId}/${noteId}`).remove();
     console.log("deleted ", noteId);
 }
+
+function listDelete(noteId, qty) {
+    if(qty>1){
+        qty--;
+        //set document.querySelector here
+    }else{
+    firebase.database().ref(`users/${googleUserId}/${noteId}`).remove();
+    console.log("deleted ", noteId);
+    }
+}
