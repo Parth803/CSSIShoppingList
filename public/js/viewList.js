@@ -5,7 +5,7 @@ window.onload = (event) => {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       console.log('Logged in as: ' + user.displayName);
-      const googleUserId = user.uid;
+      googleUserId = user.uid;
       getNotes(googleUserId);
     } else {
       // If not logged in, navigate back to login page.
@@ -27,13 +27,13 @@ const renderDataAsHtml = (data) => {
   for(const noteItem in data) {
     const note = data[noteItem];
     // For each note create an HTML card
-    cards += createCard(note)
+    cards += createCard(note, noteItem);
   };
   // Inject our string of HTML into our viewNotes.html page
   document.querySelector('#app').innerHTML = cards;
 };
 
-const createCard = (note) => {
+const createCard = (note, noteId) => {
    return `
      <div class="column is-one-quarter">
        <div class="card">
@@ -46,13 +46,22 @@ const createCard = (note) => {
            </div>
          </div>
          <div class="card-content">
-           <div class="content">Quantity: ${note.quantity}</div>
+           <div class="content">
+           Quantity: ${note.quantity}
+           <button id='addQuantity' class = 'button is-link is-small' onclick = 'quantPlus("`+noteId+`","`+note.name+`")'>Add to Quantity</button>
+           </div>
+         </div>
+         <div class="card-content">
+           <div class="content">
+           <button id='addQuantity' class = 'button is-link is-small' onclick = 'listDelete("`+noteId+`","`+note.name+`")'>Delete</button>
+           </div>
          </div>
        </div>
      </div>
    `;
 };
 
+/*
 function editNote(noteId){
     const editNoteModal=document.querySelector('#editNoteModal');
 
@@ -89,23 +98,43 @@ function deleteNote(noteId) {
         console.log("deleted ", noteId);
     }
 }
+*/
 
-function quantPlus(noteId){
-    let qty = firebase.database().ref(`users/${googleUserId}/${noteId}/quantity`).val();
-    firebase.database().ref(`users/${googleUserId}/${noteId}`).push({
-        quantity: qty+1,
-    });
+
+function quantPlus(noteId, name){
+
+    const notesRef = firebase.database().ref(`users/${googleUserId}`);
+    notesRef.once('value', (snapshot) => {
+      let data = snapshot.val();
+      for (key in data) {
+        let child = data[key];
+        if(child.name==name){
+            child.quantity += 1;
+            const childRef = firebase.database().ref(`users/${googleUserId}/${key}`);
+            childRef.update(child);
+            return;
+        }
+       }
+  });
+  
 }
 
-function listDelete(noteId, qty) {
-    if(qty>1){
-        qty--;
-        //set document.querySelector here
-        firebase.database().ref(`users/${googleUser}/${noteId}`).push({
-            quantity: qty,
-        })
-    }else{
-    firebase.database().ref(`users/${googleUser}/${noteId}`).remove();
-    console.log("deleted ", noteId);
-    }
+function listDelete(noteId, name) {
+    const notesRef = firebase.database().ref(`users/${googleUserId}`);
+    notesRef.once('value', (snapshot) => {
+      let data = snapshot.val();
+      for (key in data) {
+        let child = data[key];
+        if(child.name==name){
+            if(child.quantity>1){
+                child.quantity-=1;
+                const childRef = firebase.database().ref(`users/${googleUserId}/${key}`);
+                childRef.update(child);
+                return;
+            }else{
+            firebase.database().ref(`users/${googleUserId}/${key}`).remove();
+            }
+       }
+      }
+  });
 }

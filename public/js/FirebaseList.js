@@ -15,7 +15,6 @@ window.onload = (event) => {
 
 function updateList(img, item){
   const imgUrl = 'https://spoonacular.com/cdn/ingredients_500x500/'+img;
-  let dataArr = [];    
   const notesRef = firebase.database().ref(`users/${googleUser}`);
   notesRef.once('value', (snapshot) => {
       let data = snapshot.val();
