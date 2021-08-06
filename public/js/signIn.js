@@ -29,3 +29,7 @@ const signIn = () => {
     console.log(err);
   });
 }
+
+function cSan(){
+    alert("Parth has bad taste");
+}
