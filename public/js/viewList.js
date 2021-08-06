@@ -48,7 +48,8 @@ const createCard = (note, noteId) => {
          <div class="card-content">
            <div class="content">
            Quantity: ${note.quantity}
-           <button id='addQuantity' class = 'button is-link is-small' onclick = 'quantPlus("`+noteId+`","`+note.name+`")'>Add to Quantity</button>
+           <button id='addQuantity' class = 'button is-link is-small' onclick = 'quantPlus("`+noteId+`","`+note.name+`")'>Add</button>
+           <button id='addQuantity' class = 'button is-link is-small' onclick = 'quantMinus("`+noteId+`","`+note.name+`")'>Remove</button>
            </div>
          </div>
          <div class="card-content">
@@ -119,7 +120,8 @@ function quantPlus(noteId, name){
   
 }
 
-function listDelete(noteId, name) {
+function quantMinus(noteId, name){
+
     const notesRef = firebase.database().ref(`users/${googleUserId}`);
     notesRef.once('value', (snapshot) => {
       let data = snapshot.val();
@@ -127,13 +129,27 @@ function listDelete(noteId, name) {
         let child = data[key];
         if(child.name==name){
             if(child.quantity>1){
-                child.quantity-=1;
+                child.quantity -= 1;
                 const childRef = firebase.database().ref(`users/${googleUserId}/${key}`);
                 childRef.update(child);
                 return;
             }else{
-            firebase.database().ref(`users/${googleUserId}/${key}`).remove();
+                firebase.database().ref(`users/${googleUserId}/${key}`).remove();
             }
+        }
+       }
+  });
+  
+}
+
+function listDelete(noteId, name) {
+    const notesRef = firebase.database().ref(`users/${googleUserId}`);
+    notesRef.once('value', (snapshot) => {
+      let data = snapshot.val();
+      for (key in data) {
+        let child = data[key];
+        if(child.name==name){
+            firebase.database().ref(`users/${googleUserId}/${key}`).remove();
        }
       }
   });
