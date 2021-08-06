@@ -62,46 +62,6 @@ const createCard = (note, noteId) => {
    `;
 };
 
-/*
-function editNote(noteId){
-    const editNoteModal=document.querySelector('#editNoteModal');
-
-
-    const notesRef = firebase.database().ref(`users/${googleUserId}`);
-    notesRef.on('value', (snapshot) => {
-        const data = snapshot.val();
-        const noteDetails = data[noteId];
-        document.querySelector('#editTitleInput').value = noteDetails.title;
-        document.querySelector('#editTextInput').value = noteDetails.text;
-        document.querySelector('#noteId').value = noteId;
-    })
-
-    editNoteModal.classList.toggle('is-active');
-}
-
-function saveEditedNote(){
-    const title = document.querySelector('#editTitleInput').value;
-    const text = document.querySelector('#editTextInput').value;
-    const noteId = document.querySelector('#noteId').value;
-    const editedNote = { title, text };
-    firebase.database().ref(`users/${googleUserId}/${noteId}`).update(editedNote);
-    editNoteModal.classList.toggle('is-active');
-}
-
-function closeEditModal(){
-    const editNoteModal = document.querySelector('#editNoteModal');
-    editNoteModal.classList.toggle('is-active');
-}
-
-function deleteNote(noteId) {
-    if(window.confirm("Are you sure you want to delete this note?")){
-        firebase.database().ref(`users/${googleUserId}/${noteId}`).remove();
-        console.log("deleted ", noteId);
-    }
-}
-*/
-
-
 function quantPlus(noteId, name){
 
     const notesRef = firebase.database().ref(`users/${googleUserId}`);
