@@ -67,7 +67,7 @@
             url:"https://api.spoonacular.com/food/ingredients/search?apiKey=da9eebbb65da478894ce3e45a23e7aa4&number=1&query="+q,
             success:function(res){
             document.getElementById("output").innerHTML=""
-            document.getElementById("output").innerHTML+="<h1>"+res.results[0].name+"</h1><br><img src='"+'https://spoonacular.com/cdn/ingredients_500x500/'+res.results[0].image+"'width='500'></img><br><button id='addList' class = 'button is-link is-small' onclick = 'updateList(`"+res.results[0].name+"`)'>Add to List</button>"
+            document.getElementById("output").innerHTML+="<h1>"+res.results[0].name+"</h1><br><img src='"+'https://spoonacular.com/cdn/ingredients_500x500/'+res.results[0].image+"'width='500'></img><br><button id='addList' class = 'button is-link is-small' onclick = 'updateList(`"+res.results[0].image+"`,`"+res.results[0].name+"`)'>Add to List</button>"
             }
         })
     }
